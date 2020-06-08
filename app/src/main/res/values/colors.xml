@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#000000</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#FFFFFF</color>
+    <!-- Gradient scrim color to separate text from the background -->
+    <color name="start_color_gradient">#40000000</color>
+    <color name="center_color_gradient">#00000000</color>
+    <color name="end_color_gradient">#96000000</color>
+
+</resources>

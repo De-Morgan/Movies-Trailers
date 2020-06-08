@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="movie"
+            type="com.morgan.trailers.data.models.Movie" />
+        <variable
+            name="viewmodel"
+            type="com.morgan.trailers.movies.MoviesViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{()->viewmodel.openMovieDetails(movie.id)}"
+        android:padding="@dimen/padding_activity_small"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:visibility="visible"
+            imageUrl="@{movie.posterUrl}"
+            tools:srcCompat="@color/colorPrimary" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            android:text="@{movie.originalTitle}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            tools:text="@tools:sample/last_names" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="10sp"
+            android:text="@{movie.releaseYear}"
+            tools:text="@tools:sample/date/ddmmyy" />
+
+    </LinearLayout>
+</layout>

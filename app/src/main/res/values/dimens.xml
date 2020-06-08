@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activity_horizontal_padding">16dp</dimen>
+    <dimen name="loading_indicator_margin_top">20dp</dimen>
+    <dimen name="padding_activity_small">8dp</dimen>
+    <dimen name="size_play_image">60dp</dimen>
+    <dimen name="size_star_image">24dp</dimen>
+</resources>

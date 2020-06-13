@@ -32,10 +32,6 @@ class RefreshPopularMoviesWork(val context: Context,params: WorkerParameters, pr
             )
             Result.success()
         }catch ( error: MovieRefreshError){
-            notificationManager.sendNotification(
-                context.getText(R.string.movie_fresh_failed).toString(),
-                context
-            )
             Result.failure()
         }
     }

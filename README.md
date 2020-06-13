@@ -36,7 +36,9 @@ Libraries Used
   * [ViewModel][17] - Store UI-related data that isn't destroyed on app rotations. Easily schedule
      asynchronous tasks for optimal execution.
   * [WorkManager][18] - Manage your Android background jobs.
-
+* [UI][30] - Details on why and how to use UI Components in your apps - together or separate
+  * [Fragment][34] - A basic unit of composable UI.
+  * [Recyclerview][35] - Display large sets of data in your UI while minimizing memory usage.
 * Third party
   * [Glide][90] for image loading
   * [Gson][4] Java library that can be used to convert Java Objects into their JSON representation
@@ -61,7 +63,17 @@ Libraries Used
 [30]: https://developer.android.com/guide/topics/ui
 [31]: https://developer.android.com/training/animation/
 [34]: https://developer.android.com/guide/components/fragments
-[35]: https://developer.android.com/guide/topics/ui/declaring-layout
+[35]: https://developer.android.com/jetpack/androidx/releases/recyclerview
 [90]: https://bumptech.github.io/glide/
 [91]: https://kotlinlang.org/docs/reference/coroutines-overview.html
 
+Upcoming features
+-----------------
+- Adding search page to the app. If you're interested in adding this feature, you can submit a PR.
+**Note: The logic for this feature is already included** 
+
+
+Support
+-------
+
+If you like the project, do well to star it and also keep a watch.

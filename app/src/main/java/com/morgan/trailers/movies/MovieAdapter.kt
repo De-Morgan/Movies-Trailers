@@ -17,8 +17,6 @@ import kotlinx.coroutines.FlowPreview
 @FlowPreview
 class MovieAdapter(private val moviesViewModel: MoviesViewModel): PagedListAdapter<Movie,MovieAdapter.ViewHolder>(MovieDiffCallback){
 
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.fromParent(parent)
     }

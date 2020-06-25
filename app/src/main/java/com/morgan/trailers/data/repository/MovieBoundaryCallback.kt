@@ -85,7 +85,7 @@ class MovieSearchBoundaryCallback (
             private val movieDao: MovieDao
 ): PagedList.BoundaryCallback<Movie>(){
 
-    private var searchRequestedPage = 1;
+    private var searchRequestedPage = 1
 
     private var isRequestInProgress = false
     private val _networkErrors = MutableLiveData<String>()
@@ -125,7 +125,4 @@ class MovieSearchBoundaryCallback (
         })
 
     }
-
-
-
 }

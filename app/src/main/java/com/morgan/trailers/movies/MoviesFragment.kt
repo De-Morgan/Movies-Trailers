@@ -2,6 +2,7 @@ package com.morgan.trailers.movies
 
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -55,15 +56,22 @@ class MoviesFragment : Fragment() {
 
 
     private fun setUpMovieObserver(){
-           movieViewModel.movies.observe(viewLifecycleOwner, Observer {
-               Timber.d("This is the number of  movies observed${it.size}")
-      adapter.submitList(it)
-      })
+        movieViewModel.movies.observe(viewLifecycleOwner, Observer {
+            Timber.d("This is the number of  movies observed${it.size}")
+            adapter.submitList(it)
+        })
+        movieViewModel.searchedMovies.observe(viewLifecycleOwner, Observer {
+            Timber.d("This is the number of  movies observed${it.size}")
+            adapter.submitList(it)
+        })
     }
 
-    private fun  setUpNetworkErrorObserver(){
 
+    private fun setUpNetworkErrorObserver(){
         movieViewModel.networkErrors.observe(viewLifecycleOwner, Observer{
+            Snackbar.make(requireView(),it,Snackbar.LENGTH_LONG).show()
+        })
+        movieViewModel.searchNetworkErrors.observe(viewLifecycleOwner, Observer{
             Snackbar.make(requireView(),it,Snackbar.LENGTH_LONG).show()
         })
     }
@@ -90,6 +98,7 @@ class MoviesFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.movie_type_menu,menu)
+        initSearch(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean = when(item.itemId){
@@ -110,5 +119,40 @@ class MoviesFragment : Fragment() {
             movieViewModel.changeMovieType(MovieType.UpComing)
             true
         }
+    }
+
+    private fun updateMoviesListFromInput(query: String?) {
+        query?.trim().let {
+            if (!it.isNullOrEmpty()) {
+                binding.recyclerView.scrollToPosition(0)
+                movieViewModel.searchRepo(it.toString())
+                adapter.submitList(null)
+            }
+        }
+    }
+
+    private fun initSearch(menu: Menu) {
+        val searchItem = menu.findItem(R.id.search_menu)
+        val searchView = searchItem.actionView as android.widget.SearchView
+        searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener,
+            android.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                try {
+                    updateMoviesListFromInput(query)
+
+                } catch (e: Exception){
+                    Timber.d(e)
+                }
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (searchView.query.isEmpty()) {
+                    movieViewModel.refreshType()
+                }
+                return false
+            }
+
+        })
     }
 }

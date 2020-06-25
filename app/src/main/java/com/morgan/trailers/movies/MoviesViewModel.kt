@@ -36,13 +36,24 @@ class MoviesViewModel(private val movieRepository: MovieRepository): ViewModel()
         movieRepository.searchMovie(query)
     }
 
-    val  movies: LiveData<PagedList<Movie>> = Transformations.switchMap(movieResult){it.data}
-    val  networkErrors: LiveData<String> = Transformations.switchMap(movieResult){it.networkErrors}
-    val loadingSpinner: LiveData<Boolean> = Transformations.switchMap(movieResult){it.loadingData}
+    var  movies: LiveData<PagedList<Movie>> = Transformations.switchMap(movieResult){it.data}
+    var  networkErrors: LiveData<String> = Transformations.switchMap(movieResult){it.networkErrors}
+    var loadingSpinner: LiveData<Boolean> = Transformations.switchMap(movieResult){it.loadingData}
+
+    val searchedMovies: LiveData<PagedList<Movie>>
+            = Transformations.switchMap(movieSearchResult){it.data}
+    val  searchNetworkErrors: LiveData<String> = Transformations.switchMap(movieSearchResult){it.networkErrors}
+
 
     private val _currentTitle = MutableLiveData<Int>()
     val currentTitle: LiveData<Int> = _currentTitle
 
+    /**
+     * Search repository based on a query string.
+     */
+    fun searchRepo(queryString: String) {
+        queryLiveData.postValue(queryString)
+    }
 
 //    private val _networkError =  MutableLiveData<Event<String>>();
 //    val networkError: LiveData<Event<String>>
@@ -56,9 +67,9 @@ class MoviesViewModel(private val movieRepository: MovieRepository): ViewModel()
     init {
     setTitle(R.string.popular_title)
 }
-
-
-
+    fun refreshType() {
+        movieTypeSelected.postValue(movieTypeSelected.value)
+    }
 
     fun changeMovieType(movieType: MovieType){
         movieTypeSelected.postValue(movieType)
@@ -88,6 +99,8 @@ class MoviesViewModel(private val movieRepository: MovieRepository): ViewModel()
 class MovieViewModelFactory (
     private val movieRepository: MovieRepository
 ) : ViewModelProvider.NewInstanceFactory() {
+    @ExperimentalCoroutinesApi
+    @FlowPreview
     override fun <T : ViewModel> create(modelClass: Class<T>) =
         (MoviesViewModel(movieRepository) as T)
 }

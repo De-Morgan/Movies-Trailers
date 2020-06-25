@@ -12,9 +12,9 @@ data class MovieVideo(
     val type: String
 ){
     val  movieUrl: String
-    get() =
-          if(site == "YouTube") "https://www.youtube.com/watch?v=$key"
-    else "https://vimeo.com/$key"
+        get() =
+            if(site == "YouTube") "https://www.youtube.com/watch?v=$key"
+            else "https://vimeo.com/$key"
 
 }
 

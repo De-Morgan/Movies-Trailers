@@ -2,37 +2,28 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item android:id="@+id/search_menu"
+        android:title="@string/search_menu"
+        app:actionViewClass="android.widget.SearchView"
+        app:showAsAction="always"/>
     <item
         android:id="@+id/popular_menu"
         android:title="@string/popular_menu"
         android:orderInCategory="200"
-        app:showAsAction="never"
-        />
+        app:showAsAction="never" />
     <item
         android:id="@+id/top_rated_menu"
-
         android:title="@string/top_rated_menu"
         android:orderInCategory="300"
-        app:showAsAction="never"
-
-
-        />
+        app:showAsAction="never" />
     <item
         android:id="@+id/now_playing_menu"
-
         android:title="@string/now_playing_menu"
         android:orderInCategory="400"
-        app:showAsAction="never"
-
-
-        />
+        app:showAsAction="never" />
     <item
         android:id="@+id/upcoming_menu"
-
         android:title="@string/upcoming_menu"
         android:orderInCategory="500"
-        app:showAsAction="never"
-
-
-        />
+        app:showAsAction="never" />
 </menu>

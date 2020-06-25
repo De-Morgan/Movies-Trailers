@@ -17,4 +17,5 @@
     <string name="movie_fresh_failed">Unable to refresh movies</string>
     <string name="slash_10">/10</string>
     <string name="star_content_description">star_image</string>
+    <string name="search_menu">search</string>
 </resources>
